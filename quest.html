@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Quest: Enter the small - beta</title>
+<script>
+function $(elm)
+{
+	return document.getElementById(elm);
+}
+</script>
+<script src='quest.js'></script>
+<script src='scorpion.js'></script>
+
+<script>
+
+Room1.Hero=MyHero;
+var CurrentRoom=Room1;
+var did_we_start=false;
+
+
+function init()
+{
+	$('input_field').addEventListener ('keyup',invokeAction,true);
+}//EOF init
+
+function invokeAction(E)
+{
+	//return
+	if(E.keyCode==13)
+	{
+		if(did_we_start)
+		{
+			var Token=parseCommand($('input_field').value);
+			$('input_field').value='';
+			CurrentRoom=command_dispatcher(Token,CurrentRoom);
+			$('image_main').src=CurrentRoom.image;
+			MessageQue.pull();
+		}
+		else
+		{
+			if($('input_field').value=='start')
+			{
+				did_we_start=true;
+				$('input_field').value='';
+				start_game();
+			}
+			else
+			{
+				alert('Did you mean to write "start" in the command box?');
+				$('input_field').value='start';
+			}
+		}
+	}
+}
+
+function start_game()
+{
+	CurrentRoom.enter();
+	$('image_main').src=CurrentRoom.image;
+	MessageQue.getDesc();
+}//EOF start game
+</script>
+
+<style type="text/css">
+@import url('quest.css');
+</style>
+
+</head>
+<body onload='init()'>
+<div id="header_continuos1">
+
+</div>
+<div id="header_continuos2">
+
+</div>
+<div id="screen">
+	<div id="header">
+		<img src="header.jpg" alt="enter the scorpion"/>
+	</div>
+	
+	<div id="main_image">
+		<img id="image_main" src='start.jpg' />
+	</div>
+	
+	<div id="commands-history">
+
+	</div>
+	
+	<input type="text" id="input_field" value="enter commands here"/>
+	
+	<div id="comunication_div">
+		Greetings stranger.<br />
+		Welcome to <h2>questjs 0.1</h2> by Itay Moav<br />
+		This is a beta version, feel free to play around.<br />
+		<h2>questjs 0.1</h2> is a retro experiment to emulate the 80's adventure games, where you had to write the commands 
+		yourself to solve each room in the adventure.<br />
+		Enter the Commands in the blue strip just above.<br />
+		In this box you will see the description of each room. Above you will see an image of the room (somtimes there are clues there).<br />
+		Right to the image is the history of your commands and the outcome of each command.<br />
+		To see a list of available commands write "words" or "dic" or "dictionary". Also, You have to write "start" to start.<br />
+		<br />
+		Good luck<br />
+		itaym02 (inat) hotmail (dot) com.
+	</div>
+<!--
+	<div id="adsense_bottom">
+		<script type="text/javascript"><!--
+			google_ad_client = "pub-5668654060633042";
+			/* 728x90, created 6/23/08 */
+			google_ad_slot = "6274937983";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+<!--			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+	
+	<div id="getff">
+		<script type="text/javascript"><!--
+			google_ad_client = "pub-5668654060633042";
+			/* 110x32, created 6/23/08 */
+			google_ad_slot = "8700129086";
+			google_ad_width = 110;
+			google_ad_height = 32;
+			google_cpa_choice = ""; // on file
+			//-->
+<!--			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+-->
+</div>
+</body>
+</html>
