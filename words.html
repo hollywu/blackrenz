@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Words Page</title>
+<script>
+function $(elm)
+{
+	return document.getElementById(elm);
+}
+</script>
+<script src='quest.js'></script>
+<script src='scorpion.js'></script>
+<script>
+function init()
+{
+	$('comunication_div').style.height='530px';
+	$('comunication_div').innerHTML=GameWords.getWords();
+}
+</script>
+
+<style type="text/css">
+@import url('quest.css');
+</style>
+
+</head>
+<body onload='init()'>
+<div id="header_continuos1">
+	left cont
+</div>
+<div id="header_continuos2">
+	right cont	right cont	right cont	right cont	right cont	right cont	right cont	right cont	right cont	right cont	right cont
+</div>
+<div id="screen">
+	<div id="header">
+		[header - adventure logo and name]
+	</div>
+	
+	<div id="comunication_div">
+	</div>
+</div>
+</body>
+</html>

@@ -20,7 +20,7 @@ var GameWords={
 		{
 			if(this[myword].gameWord)
 			{
-				html+='<br />'+myword.versions.join("<br />");
+				html+='<br />'+this[myword].versions.join("<br />");
 			}
 		}
 		return html;
